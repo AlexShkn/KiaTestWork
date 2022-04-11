@@ -1,0 +1,14 @@
+{
+	"success": true,
+	"Item": {
+		"Title": "KIA SPORTAGE",
+		"Description": "5-doors od 1.6 L 136 HP Turbo diesel 6-speeds manual gearbox",
+		"KeyValues": { "FuelType": "diesel", "TrimLevel": "SILVER", "GearBox": "manual" },
+		"Original": {
+			"Make": "KIA",
+			"CarOptions": { "Title": "CASA WHITE", "Code": "CASAWHITE" },
+			"Model": "SPORTAGE"
+		}
+	},
+	"Garage": { "Name": "DeltaTest", "Email": "test@delta-car.com", "Owner": "Garagist" }
+}

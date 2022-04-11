@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+   <title>Заголовок</title>
+   <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+   <div class="container">
+      <div class="car-card">
+         <div class="car__contacts contacts-car">
+         </div>
+      </div>
+      <div class="edit-card-form">
+         <button class="btn-edit btn">Edit</button>
+         <form name="card-form" class="card-form">
+            <div class="card-form__body">
+               <label class="card-form__field">
+                  <span class="card-form__caption">Name</span>
+                  <input autocomplete="off" data-value="Name" name="card-name" class="card-form__input" type="text">
+               </label>
+               <label class="card-form__field">
+                  <span class="card-form__caption">Owner</span>
+                  <input autocomplete="off" data-value="Owner" name="card-owner" class="card-form__input" type="text">
+               </label>
+               <label class="card-form__field">
+                  <span class="card-form__caption">Email</span>
+                  <input autocomplete="off" data-value="Email" name="card-email" class="card-form__input" type="email">
+               </label>
+            </div>
+            <button class="card-form__btn btn" type="submit">Send</button>
+         </form>
+      </div>
+   </div>
+
+   <script src="js/script.js"></script>
+</body>
+
+</html>
