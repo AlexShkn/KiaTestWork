@@ -22,55 +22,63 @@ cardForm.addEventListener('submit', e => {
 });
 
 function renderCard(data) {
+	const dataLowerKey = objectKeysToLowerCase(data);
 	const carCard = document.querySelector('.car-card');
-	let template = cardCarTemplate(data);
+	let template = cardCarTemplate(dataLowerKey);
 	carCard.insertAdjacentHTML('afterbegin', template);
 }
 
-function cardCarTemplate({ Item, Garage }) {
+function cardCarTemplate({ item, garage }) {
 	const imageCar = 'https://avtonam.ru/wp-content/uploads/2021/07/kia-sportage-2022-1.jpg';
 	return `
 	         <div class="card-car__main card">
             <div class="card__description">
-               <div class="card__title">${Item.Title}</div>
-               <div class="card__text">${Item.Description}</div>
+               <div class="card__title">${item.title}</div>
+               <div class="card__text">${item.description}</div>
             </div>
             <div class="car-card__bottom">
                <div class="card__img"><img src="${imageCar}" alt="kia sportage"></div>
                <div class="car__options">
                   <div class="car__original original">
-                     <div class="original__make bold">Make: <span>${Item.Original.Make}</span></div>
-                     <div class="original__model bold">Model: <span>${Item.Original.Model}</span></div>
-                     <div class="original__color bold">Color: <span>${Item.Original.CarOptions.Title}</span></div>
+                     <div class="original__make bold">Make: <span>${item.original.make}</span></div>
+                     <div class="original__model bold">Model: <span>${item.original.model}</span></div>
+                     <div class="original__color bold">Color: <span>${item.original.caroptions.title}</span></div>
                   </div>
                   <div class="car__values values">
-                     <div class="values__fuel-type bold">Fuel type: <span>${Item.KeyValues.FuelType}</span></div>
-                     <div class="values__trim-level bold">Trim level: <span>${Item.KeyValues.TrimLevel}</span></div>
-                     <div class="values__gear-box b bold">Gear box: <span>${Item.KeyValues.GearBox}</span></div>
+                     <div class="values__fuel-type bold">Fuel type: <span>${item.keyvalues.fueltype}</span></div>
+                     <div class="values__trim-level bold">Trim level: <span>${item.keyvalues.trimlevel}</span></div>
+                     <div class="values__gear-box bold">Gear box: <span>${item.keyvalues.gearbox}</span></div>
                   </div>
                </div>
             </div>
          </div>
          <div class="car__contacts contacts-car">
 		        <h2 class="contacts-car__title">Garage contacts:</h2>
-            <div class="contacts-car__name bold">Name: <span>${Garage.Name}</span></div>
-            <div class="contacts-car__owner bold">Owner: <span>${Garage.Owner}</span></div>
-            <div class="contacts-car__email bold">Email: <span>${Garage.Email}</span></div>
+            <div class="contacts-car__name bold">Name: <span>${garage.name}</span></div>
+            <div class="contacts-car__owner bold">Owner: <span>${garage.owner}</span></div>
+            <div class="contacts-car__email bold">Email: <span>${garage.email}</span></div>
          </div>
 	`;
 }
 
 function cardEditValue() {
-	const contactName = document.querySelector('.contacts-car__name span');
-	const contactOwner = document.querySelector('.contacts-car__owner span');
-	const contactEmail = document.querySelector('.contacts-car__email span');
-
 	if (inputCardOwner.value && inputCardName.value && inputCardEmail.value !== '') {
-		contactName.textContent = inputCardName.value;
-		contactOwner.textContent = inputCardOwner.value;
-		contactEmail.textContent = inputCardEmail.value;
+		document.querySelector('.contacts-car__name span').textContent = inputCardName.value;
+		document.querySelector('.contacts-car__owner span').textContent = inputCardOwner.value;
+		document.querySelector('.contacts-car__email span').textContent = inputCardEmail.value;
 	}
 	cardForm.reset();
+}
+
+function objectKeysToLowerCase(input) {
+	if (typeof input !== 'object') return input;
+	if (Array.isArray(input)) return input.map(objectKeysToLowerCase);
+	return Object.keys(input).reduce(function (newObj, key) {
+		let val = input[key];
+		let newVal = typeof val === 'object' && val !== null ? objectKeysToLowerCase(val) : val;
+		newObj[key.toLowerCase()] = newVal;
+		return newObj;
+	}, {});
 }
 
 getCar();
